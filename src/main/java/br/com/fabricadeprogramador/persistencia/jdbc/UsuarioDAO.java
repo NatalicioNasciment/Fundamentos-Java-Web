@@ -1,9 +1,12 @@
 package br.com.fabricadeprogramador.persistencia.jdbc;
 
+import java.awt.List;
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.fabricadeprogramador.persistencia.entidades.Usuario;
 
@@ -55,5 +58,62 @@ public class UsuarioDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void salvar(Usuario usuario){
+		if(usuario.getId() != null){
+			alterar(usuario);
+		}else{
+			cadastrar(usuario);
+		}
+	}
+	
+	public Usuario buscarPorId(Integer id){
+		
+		String sql = "SELECT * FROM usuario WHERE id = ?";
+		try(PreparedStatement pst = con.prepareStatement(sql)) {
+			pst.setInt(1, id);
+			ResultSet resultado = pst.executeQuery();	
+			if(resultado.next()){
+				
+				Usuario usuario = new Usuario();
+				usuario.setId(resultado.getInt("id"));
+				usuario.setNome(resultado.getString("nome"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setSenha(resultado.getString("senha"));
+				return usuario;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return null;
+		
+	}
+	
+/*	
+public List<Usuario> buscarTodos(){
+		
+		String sql = "SELECT * FROM usuario";
+		List<Usuario> lista = new ArrayList<Usuario>();
+		try(PreparedStatement pst = con.prepareStatement(sql)) {
+			ResultSet resultado = pst.executeQuery();	
+			while(resultado.next()){
+				
+				Usuario usuario = new Usuario();
+				usuario.setId(resultado.getInt("id"));
+				usuario.setNome(resultado.getString("nome"));
+				usuario.setLogin(resultado.getString("login"));
+				usuario.setSenha(resultado.getString("senha"));
+				lista.add(usuario);
+				
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		return lista;
+	}
+	*/
+	
+	
+	
 }

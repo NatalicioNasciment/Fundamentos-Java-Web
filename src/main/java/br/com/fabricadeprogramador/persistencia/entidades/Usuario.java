@@ -1,13 +1,13 @@
 package br.com.fabricadeprogramador.persistencia.entidades;
 
 public class Usuario {
-	private int id;
+	private Integer id;
 	private String nome;
 	private String login;
 	private String senha;
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
@@ -32,5 +32,8 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";
+	}
 }

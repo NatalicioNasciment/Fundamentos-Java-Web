@@ -8,9 +8,18 @@ public class TesteUsuarioDao {
 	public static void main(String[] args) {
 		 //testCadastrar();
 		//testAlterar();
-		testExcluir(); 
+		//testExcluir();
+//		testSalvar();
+		testBuscarPorId();
 	}
 	
+	private static void testBuscarPorId() {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario usuario = usuarioDAO.buscarPorId(2);
+		System.out.println(usuario);
+		
+	}
+
 	public static void testCadastrar(){
 		
 		Usuario usuario = new Usuario();
@@ -41,5 +50,15 @@ public class TesteUsuarioDao {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.excluir(usuario);
 		System.out.println("Excluido  com sucesso!!!");
+	}
+	public static void testSalvar(){
+		Usuario usuario = new Usuario();
+		usuario.setId(5);
+		usuario.setNome("Francisco Natalicio Nascimento");
+		usuario.setLogin("Natal");
+		usuario.setSenha("123");
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO.salvar(usuario);
+		System.out.println("Salvo com sucesso!!");
 	}
 	}
