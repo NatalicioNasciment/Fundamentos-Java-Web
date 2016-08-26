@@ -10,9 +10,20 @@ public class TesteUsuarioDao {
 		//testAlterar();
 		//testExcluir();
 //		testSalvar();
-		testBuscarPorId();
+//		testBuscarPorId();
+		testAutenticar();
 	}
 	
+	private static void testAutenticar() {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario usuario = new Usuario();
+		usuario.setLogin("gerlane");
+		usuario.setSenha("gerlane");
+				
+		System.out.println(usuarioDAO.autentica(usuario));
+		
+	}
+
 	private static void testBuscarPorId() {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = usuarioDAO.buscarPorId(2);

@@ -113,7 +113,29 @@ public List<Usuario> buscarTodos(){
 		return lista;
 	}
 	*/
-	
+	public Usuario autentica(Usuario usuario){
+		
+		String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ? ";
+		try (PreparedStatement pst = con.prepareStatement(sql)){
+			pst.setString(1, usuario.getLogin());
+			pst.setString(2, usuario.getSenha());
+			
+			ResultSet resultado = pst.executeQuery();
+			if(resultado.next()){
+			Usuario user = new Usuario();
+			user.setId(resultado.getInt("id"));
+			user.setNome(resultado.getString("nome"));
+			user.setLogin(resultado.getString("login"));
+			user.setSenha(resultado.getString("senha"));
+			return user;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 	
 }
