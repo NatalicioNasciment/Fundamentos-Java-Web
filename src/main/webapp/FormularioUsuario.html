@@ -1,20 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-<link href="css/bootstrap.css" rel="stylesheet">
+<!--[if IE 9]><html class="lt-ie10" lang="pt-br" > <![endif]-->
+<html class="no-js" lang="pt-br" >
 
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Usuario</title>
+
+<!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/foundation.css">
+
+<!-- If you are using the gem version, you need this only -->
+<script src="js/vendor/modernizr.js"></script>
+
 </head>
 <body>
-		<form class="form-inline" method="post" action="usuarioController.do">
-				
-				Nome: <input type="text" class=" form-control span3" name="nome" value="">
-				Login: <input type="text" class="form-control " name="login"  value="">
-				Senha: <input type="password" class="form-control" name="senha"  value="">
-				<input type="submit" class="btn btn-success " value="Cadastrar">
-				
-			
-		</form>
+  <div class="row">
+    <div class="large-12 columns">
+    </div>
+</div>
+<div class="row">
+    <div class="large-4 large-centered columns">
+        <form  method="post" action="usuarioController.do">
+            <fieldset>
+                <legend>Cadastro de Usuario</legend>
+                <label>Nome
+                    <input type="text" name="nome" placeholder='Digite seu nome aqui'>
+                </label>
+                 <label>Login
+                    <input type="text" name="login" placeholder='Digite seu usuário aqui'>
+                </label>
+                <label>Senha
+                    <input type="password" name="senha" placeholder="******">
+                </label>
+
+                <input type="submit" style="margin-bottom: -0.3125rem;" value="Log in" class=" button success button">
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+$(document).foundation();
+</script>
 </body>
 </html>
