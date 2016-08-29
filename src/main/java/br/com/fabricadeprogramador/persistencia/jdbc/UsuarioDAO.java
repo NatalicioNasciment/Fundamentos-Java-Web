@@ -89,11 +89,10 @@ public class UsuarioDAO {
 		
 	}
 	
-/*	
-public List<Usuario> buscarTodos(){
+public ArrayList<Usuario> buscarTodos(){
 		
-		String sql = "SELECT * FROM usuario";
-		List<Usuario> lista = new ArrayList<Usuario>();
+		String	sql = "SELECT * FROM usuario";
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		try(PreparedStatement pst = con.prepareStatement(sql)) {
 			ResultSet resultado = pst.executeQuery();	
 			while(resultado.next()){
@@ -112,7 +111,7 @@ public List<Usuario> buscarTodos(){
 		
 		return lista;
 	}
-	*/
+	
 	public Usuario autentica(Usuario usuario){
 		
 		String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ? ";

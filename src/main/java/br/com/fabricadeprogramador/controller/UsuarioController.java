@@ -1,6 +1,8 @@
 package br.com.fabricadeprogramador.controller;
 
+import java.awt.List;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,36 +26,43 @@ public class UsuarioController extends HttpServlet{
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("Chamou doGet.."+ req);
-		String nome = req.getParameter("nome");
-		String login = req.getParameter("login");
-		String senha = req.getParameter("senha");
+		String acao = req.getParameter("acao");
+		resp.setContentType("text/html");
 		
-		Usuario usuario = new Usuario();
-		usuario.setNome(nome);
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
-		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.salvar(usuario);
-		System.out.println("Sucesso!!!");
-		
+		if (acao.equals("excluir")) {
+			String id = req.getParameter("id");
+			Usuario usuario = new Usuario();
+
+			if (id != null)
+				usuario.setId(Integer.parseInt(id));
+
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			usuarioDAO.excluir(usuario);
+			resp.getWriter().println("Usuario excluído com Sucesso!!!");
+
+		} else if (acao.equals("listar")) {
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			ArrayList<Usuario> lista = usuarioDAO.buscarTodos();
+			for(Usuario u : lista)
+			resp.getWriter().print(u + "<br>");
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String id = req.getParameter("id");
 		String nome = req.getParameter("nome");
 		String login = req.getParameter("login");
 		String senha = req.getParameter("senha");
 		
 		Usuario usuario = new Usuario();
+		if(usuario != null)
+		usuario.setId(Integer.parseInt(id));
 		usuario.setNome(nome);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
 		
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
-		
 		
 		resp.getWriter().print("Usuario Cadastrado com sucesso!!!");
 		System.out.println("Sucesso!!!");
