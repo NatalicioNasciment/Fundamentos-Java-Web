@@ -1,5 +1,7 @@
 package br.com.fabricadeprogramador;
 
+import java.util.ArrayList;
+
 import br.com.fabricadeprogramador.persistencia.entidades.Usuario;
 import br.com.fabricadeprogramador.persistencia.jdbc.UsuarioDAO;
 
@@ -11,9 +13,16 @@ public class TesteUsuarioDao {
 		//testExcluir();
 //		testSalvar();
 //		testBuscarPorId();
-		testAutenticar();
+		testBuscarTodos();
+//		testAutenticar();
 	}
 	
+	private static void testBuscarTodos() {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		ArrayList<Usuario> usuario = usuarioDAO.buscarTodos();
+		System.out.println(usuario);
+	}
+
 	private static void testAutenticar() {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		Usuario usuario = new Usuario();

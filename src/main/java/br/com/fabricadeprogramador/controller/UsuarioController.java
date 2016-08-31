@@ -4,6 +4,7 @@ import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,25 +39,30 @@ public class UsuarioController extends HttpServlet{
 
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			usuarioDAO.excluir(usuario);
-			resp.getWriter().println("Usuario excluído com Sucesso!!!");
+//			resp.getWriter().println("Usuario excluído com Sucesso!!!");
+			resp.sendRedirect("usuarioController.do?acao=listar");
 
 		} else if (acao.equals("listar")) {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
 			ArrayList<Usuario> lista = usuarioDAO.buscarTodos();
-			for(Usuario u : lista)
-			resp.getWriter().print(u + "<br>");
+			//estrutura map : com chave e valor . Atribuição da lista dentro do request.
+			req.setAttribute("lista", lista);
+			//
+			RequestDispatcher dispacher = req.getRequestDispatcher("WEB-INF/ListaUsuario.jsp");
+			//faz o encaminhamento
+			dispacher.forward(req, resp);
 		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("id");
+		//String id = req.getParameter("id");
 		String nome = req.getParameter("nome");
 		String login = req.getParameter("login");
 		String senha = req.getParameter("senha");
 		
 		Usuario usuario = new Usuario();
 		if(usuario != null)
-		usuario.setId(Integer.parseInt(id));
+		//usuario.setId(Integer.parseInt(id));
 		usuario.setNome(nome);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
