@@ -71,7 +71,8 @@ public class UsuarioController extends HttpServlet{
 		usuarioDAO.salvar(usuario);
 		
 		resp.getWriter().print("Usuario Cadastrado com sucesso!!!");
-		System.out.println("Sucesso!!!");
+		resp.sendRedirect("usuarioController.do?acao=listar");
+//		System.out.println("Sucesso!!!");
 	}
 	
 	@Override
