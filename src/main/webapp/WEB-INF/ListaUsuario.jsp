@@ -29,7 +29,7 @@
 									<td><% out.print(u.getNome()); %></td>
 									<td><% out.print(u.getLogin()); %></td>
 									<td><a href="usuarioController.do?acao=excluir&id=<%= u.getId() %>"> Excluir</a></td>
-									<td><a href="usuarioController.do?acao=excluir&id=<%= u.getId() %>"> Editar</a></td>
+									<td><a href="usuarioController.do?acao=editar&id=<%= u.getId() %>"> Editar</a></td>
 								</tr>
 								
 							<%} %>
