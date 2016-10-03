@@ -135,6 +135,9 @@ public ArrayList<Usuario> buscarTodos(){
 		
 		return null;
 	}
+	public void y(){
+		
+	}
 	
 	
 }

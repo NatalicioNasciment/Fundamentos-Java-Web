@@ -17,9 +17,12 @@ import br.com.fabricadeprogramador.persistencia.jdbc.UsuarioDAO;
 @WebServlet("/usuarioController.do")
 public class UsuarioController extends HttpServlet{
 	
-	
 	public UsuarioController() {
 		System.out.println("Contrutor...");
+	}
+	
+	public void x(){
+		
 	}
 	@Override
 	public void init() {
